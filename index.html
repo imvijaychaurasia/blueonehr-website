@@ -43,10 +43,6 @@
       </nav>
 
       <!-- CTA buttons -->
-      <div class="hidden md:flex items-center gap-3">
-        <a href="https://demo.blueonehr.com" target="_blank" class="text-sm font-semibold text-brand hover:text-brand-dark transition-colors">Sign in</a>
-        <a href="/about/#contact" class="btn-primary text-sm font-bold text-white bg-brand hover:bg-brand-dark px-5 py-2.5 rounded-lg">Start Free Trial</a>
-      </div>
 
       <!-- Mobile menu button -->
       <button id="menu-btn" aria-label="Open menu" aria-expanded="false"
@@ -67,10 +63,6 @@
         <a href="/pricing/" class="block px-3 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50 rounded-lg">Pricing</a>
         <a href="/demo/"    class="block px-3 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50 rounded-lg">Demo</a>
         <a href="/about/"   class="block px-3 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50 rounded-lg">About</a>
-        <div class="pt-3 border-t border-slate-100 space-y-2">
-          <a href="https://demo.blueonehr.com" target="_blank" class="block px-3 py-2.5 text-sm font-semibold text-brand">Sign in →</a>
-          <a href="/about/#contact" class="block px-4 py-3 text-sm font-bold text-white bg-brand rounded-lg text-center">Start Free Trial</a>
-        </div>
       </div>
     </div>
   </div>
@@ -483,9 +475,22 @@
     });
   });
 
-  // Default: select Payroll
+  // Default: highlight Payroll pill without scrolling
   const defaultPill = document.querySelector('[data-module="Payroll"]');
-  if (defaultPill) defaultPill.click();
+  if (defaultPill && panel) {
+    const mod = defaultPill.dataset.module;
+    defaultPill.classList.add('bg-brand','text-white','border-brand');
+    defaultPill.classList.remove('bg-white','text-slate-700','border-slate-200');
+    const info = moduleData[mod];
+    document.getElementById('mod-emoji').textContent = info.emoji;
+    document.getElementById('mod-title').textContent = mod;
+    document.getElementById('mod-desc').textContent = info.desc;
+    document.getElementById('mod-bullets').innerHTML = info.bullets.map(b =>
+      `<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand flex-shrink-0"></span>${b}</li>`
+    ).join('');
+    panel.classList.remove('hidden');
+    // No scrollIntoView — user scrolls manually
+  }
 })();
 </script>
 
