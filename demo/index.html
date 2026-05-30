@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Demo BlueOneHR</title>
+  <meta name="description" content="See BlueOneHR in action a guided walkthrough of every major module. Book a live demo with our team." />
+  <link rel="icon" href="/assets/img/icon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { brand: '#1A56DB', 'brand-dark': '#1344B8', cyan: '#06B6D4' },
+          fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="/css/styles.css" />
+  <style>
+    .tab-btn.active { background: #1A56DB; color: #fff; }
+    .tab-btn { transition: background 0.2s, color 0.2s; }
+    .tour-panel { display: none; }
+    .tour-panel.active { display: grid; }
+    /* CSS mockup screens */
+    .screen-shell { background: #0f172a; border-radius: 12px; overflow: hidden; }
+    .screen-bar { background: #1e293b; height: 32px; display: flex; align-items: center; padding: 0 12px; gap: 6px; }
+    .screen-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .screen-content { padding: 16px; }
+    .stat-row { display: flex; gap: 10px; margin-bottom: 12px; }
+    .stat-box { flex: 1; background: #1e293b; border-radius: 8px; padding: 12px; }
+    .stat-val { color: #fff; font-size: 22px; font-weight: 800; }
+    .stat-lbl { color: #64748b; font-size: 10px; margin-top: 2px; }
+    .stat-up { color: #22c55e; font-size: 10px; }
+    .bar-chart { display: flex; align-items: flex-end; gap: 6px; height: 80px; margin-top: 8px; }
+    .bar { background: #1A56DB; border-radius: 4px 4px 0 0; flex: 1; min-width: 0; }
+    .bar.cyan { background: #06B6D4; }
+    .table-row { display: flex; gap: 8px; padding: 8px 0; border-bottom: 1px solid #1e293b; align-items: center; }
+    .avatar-sm { width: 28px; height: 28px; border-radius: 50%; background: #1A56DB; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #fff; font-weight: 700; }
+    .badge-green { background: #14532d; color: #4ade80; font-size: 9px; padding: 2px 6px; border-radius: 4px; }
+    .badge-yellow { background: #713f12; color: #fbbf24; font-size: 9px; padding: 2px 6px; border-radius: 4px; }
+    .badge-blue { background: #1e3a5f; color: #60a5fa; font-size: 9px; padding: 2px 6px; border-radius: 4px; }
+  </style>
+</head>
+<body class="font-sans text-slate-800 antialiased">
+
+<!-- ── Navigation ────────────────────────────────────────────────────────── -->
+<header id="main-nav" class="fixed top-0 left-0 right-0 z-50 nav-glass border-b border-slate-100 transition-shadow">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-24">
+      <a href="/" class="flex items-center">
+        <img src="/assets/img/logo.svg" alt="BlueOneHR" style="height:80px;width:auto;">
+      </a>
+
+      <nav class="hidden md:flex items-center gap-7">
+        <a href="/#features" class="nav-link text-sm font-medium text-slate-600 hover:text-brand transition-colors">Features</a>
+        <a href="/#modules" class="nav-link text-sm font-medium text-slate-600 hover:text-brand transition-colors">Modules</a>
+        
+        <a href="/demo/" class="nav-link text-sm font-semibold text-brand transition-colors">Demo</a>
+        <a href="/about/" class="nav-link text-sm font-medium text-slate-600 hover:text-brand transition-colors">About</a>
+      </nav>
+
+      <div class="hidden md:flex items-center gap-3">
+        <a href="https://demo.blueonehr.com" target="_blank" class="text-sm font-semibold text-slate-700 hover:text-brand transition-colors">Log in</a>
+        <a href="/about/#contact" class="px-4 py-2 bg-brand text-white text-sm font-semibold rounded-lg hover:bg-brand-dark transition-colors">Get started</a>
+      </div>
+
+      <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100" aria-expanded="false" aria-label="Toggle menu">
+        <svg id="menu-icon" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg id="close-icon" class="w-5 h-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="md:hidden border-t border-slate-100 bg-white overflow-hidden max-h-0 transition-all duration-300">
+    <div class="px-4 py-4 space-y-1">
+      <a href="/#features" class="block px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50">Features</a>
+      <a href="/#modules" class="block px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50">Modules</a>
+      
+      <a href="/demo/" class="block px-3 py-2 rounded-lg text-sm font-semibold text-brand bg-blue-50">Demo</a>
+      <a href="/about/" class="block px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50">About</a>
+      <div class="pt-3 pb-1 border-t border-slate-100 flex flex-col gap-2">
+        <a href="https://demo.blueonehr.com" target="_blank" class="px-3 py-2 text-center text-sm font-semibold text-slate-700 border border-slate-200 rounded-lg">Log in</a>
+        <a href="/about/#contact" class="px-3 py-2 text-center text-sm font-semibold bg-brand text-white rounded-lg">Get started</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ── Hero ──────────────────────────────────────────────────────────────── -->
+<section class="pt-40 pb-12 bg-gradient-to-b from-blue-50/60 to-white">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 text-center fade-in">
+    <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-blue-100 text-brand text-xs font-semibold rounded-full mb-4">🎬 Interactive tour</span>
+    <h1 class="text-4xl sm:text-5xl font-extrabold text-slate-900 leading-tight mb-4">
+      See BlueOneHR<br><span class="gradient-text">in action</span>
+    </h1>
+    <p class="text-lg text-slate-600 mb-8">
+      Explore every module at your own pace or book a live 30-minute walkthrough with our team.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-3 justify-center">
+      <a href="https://demo.blueonehr.com" target="_blank" class="px-6 py-3 bg-brand text-white text-sm font-bold rounded-xl hover:bg-brand-dark transition-colors shadow-md shadow-blue-100">Try the live demo →</a>
+      <a href="#book-demo" class="px-6 py-3 border border-slate-200 text-slate-700 text-sm font-semibold rounded-xl hover:border-brand hover:text-brand transition-colors">Book a guided walkthrough</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Module Tour ────────────────────────────────────────────────────────── -->
+<section class="py-16 bg-white">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-2xl font-bold text-slate-900 text-center mb-2 fade-in">Module tour</h2>
+    <p class="text-slate-500 text-center mb-8 text-sm fade-in">Click a module to preview what it looks like</p>
+
+    <!-- Tab buttons -->
+    <div class="flex flex-wrap gap-2 justify-center mb-10 fade-in" id="tab-bar">
+      <button class="tab-btn active px-4 py-2 text-sm font-semibold rounded-xl border border-brand" data-tab="dashboard">Dashboard</button>
+      <button class="tab-btn px-4 py-2 text-sm font-semibold rounded-xl border border-slate-200 text-slate-600" data-tab="employees">Employees</button>
+      <button class="tab-btn px-4 py-2 text-sm font-semibold rounded-xl border border-slate-200 text-slate-600" data-tab="payroll">Payroll</button>
+      <button class="tab-btn px-4 py-2 text-sm font-semibold rounded-xl border border-slate-200 text-slate-600" data-tab="attendance">Attendance</button>
+      <button class="tab-btn px-4 py-2 text-sm font-semibold rounded-xl border border-slate-200 text-slate-600" data-tab="recruitment">Recruitment</button>
+    </div>
+
+    <!-- Tour panels -->
+    <div class="fade-in">
+
+      <!-- Dashboard -->
+      <div id="panel-dashboard" class="tour-panel active grid md:grid-cols-2 gap-10 items-center">
+        <div>
+          <span class="inline-block px-2 py-0.5 bg-blue-100 text-brand text-xs font-bold rounded mb-3">Dashboard</span>
+          <h3 class="text-2xl font-bold text-slate-900 mb-3">Your HR command centre</h3>
+          <p class="text-slate-600 text-sm leading-relaxed mb-5">See your entire workforce at a glance headcount, pending approvals, today's attendance, and upcoming birthdays. Real-time metrics refresh automatically so you're never making decisions on stale data.</p>
+          <ul class="space-y-2">
+            <li class="flex items-center gap-2 text-sm text-slate-700"><span class="w-1.5 h-1.5 rounded-full bg-brand"></span>Live headcount and department breakdown</li>
+            <li class="flex items-center gap-2 text-sm text-slate-700"><span class="w-1.5 h-1.5 rounded-full bg-brand"></span>Pending leaves, approvals and action items</li>
+            <li class="flex items-center gap-2 text-sm text-slate-700"><span class="w-1.5 h-1.5 rounded-full bg-brand"></span>Monthly payroll and compliance reminders</li>
+          </ul>
+        </div>
+        <div class="screen-shell mockup-shadow">
+          <div class="screen-bar"><div class="screen-dot" style="background:#ef4444"></div><div class="screen-dot" style="background:#f59e0b"></div><div class="screen-dot" style="background:#22c55e"></div><span class="ml-3 text-slate-500 text-xs">BlueOneHR Dashboard</span></div>
+          <div class="screen-content">
+            <div class="stat-row">
+              <div class="stat-box"><div class="stat-val">148</div><div class="stat-lbl">Total Employees</div><div class="stat-up">↑ 4 this month</div></div>
+              <div class="stat-box"><div class="stat-val">12</div><div class="stat-lbl">On Leave Today</div><div class="stat-up" style="color:#f59e0b">3 pending</div></div>
+              <div class="stat-box"><div class="stat-val">94%</div><div class="stat-lbl">Attendance Rate</div><div class="stat-up">↑ 2%</div></div>
+            </div>
+            <div style="background:#1e293b;border-radius:8px;padding:12px;">
+              <div style="color:#94a3b8;font-size:10px;margin-bottom:8px;">Headcount by department</div>
+              <div class="bar-chart">
+                <div class="bar" style="height:60%"></div>
+                <div class="bar cyan" style="height:45%"></div>
+                <div class="bar" style="height:80%"></div>
+                <div class="bar cyan" style="height:35%"></div>
+                <div class="bar" style="height:55%"></div>
+                <div class="bar cyan" style="height:70%"></div>
+              </div>
+              <div style="display:flex;gap:6px;margin-top:6px;">
+                <span style="color:#64748b;font-size:9px">Eng</span>
+                <span style="color:#64748b;font-size:9px">Sales</span>
+                <span style="color:#64748b;font-size:9px">Ops</span>
+                <span style="color:#64748b;font-size:9px">HR</span>
+                <span style="color:#64748b;font-size:9px">Fin</span>
+                <span style="color:#64748b;font-size:9px">Mktg</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Employees -->
+      <div id="panel-employees" class="tour-panel grid md:grid-cols-2 gap-10 items-center">
+        <div>
+          <span class="inline-block px-2 py-0.5 bg-blue-100 text-brand text-xs font-bold rounded mb-3">Employees</span>
+          <h3 class="text-2xl font-bold text-slate-900 mb-3">Complete employee lifecycle</h3>
+          <p class="text-slate-600 text-sm leading-relaxed mb-5">From onboarding to offboarding manage profiles, documents, org charts, and role history in one place. Employees access their own data through a self-service portal.</p>
+          <ul class="space-y-2">
+            <li class="flex items-center gap-2 text-sm text-slate-700"><span class="w-1.5 h-1.5 rounded-full bg-brand"></span>Rich employee profiles with documents and KYC</li>
+            <li class="flex items-center gap-2 text-sm text-slate-700"><span class="w-1.5 h-1.5 rounded-full bg-brand"></span>Dynamic org chart with reporting lines</li>
+            <li class="flex items-center gap-2 text-sm text-slate-700"><span class="w-1.5 h-1.5 rounded-full bg-brand"></span>Employee self-service portal for leave, payslips</li>
+          </ul>
+        </div>
+        <div class="screen-shell mockup-shadow">
+          <div class="screen-bar"><div class="screen-dot" style="background:#ef4444"></div><div class="screen-dot" style="background:#f59e0b"></div><div class="screen-dot" style="background:#22c55e"></div><span class="ml-3 text-slate-500 text-xs">BlueOneHR Employees</span></div>
+          <div class="screen-content">
+            <div style="display:flex;gap:8px;margin-bottom:12px;align-items:center;">
+              <div style="flex:1;background:#1e293b;border-radius:6px;padding:6px 10px;color:#64748b;font-size:11px;">🔍 Search employees…</div>
+              <div style="background:#1A56DB;border-radius:6px;padding:6px 10px;color:#fff;font-size:11px;white-space:nowrap;">+ Add</div>
+            </div>
+            <div class="table-row"><div class="avatar-sm">PS</div><div style="flex:1"><div style="color:#e2e8f0;font-size:11px;font-weight:600;">Priya Sharma</div><div style="color:#64748b;font-size:9px;">Engineering · L3</div></div><div class="badge-green">Active</div></div>
+            <div class="table-row"><div class="avatar-sm" style="background:#0891b2;">RK</div><div style="flex:1"><div style="color:#e2e8f0;font-size:11px;font-weight:600;">Rohit Kumar</div><div style="color:#64748b;font-size:9px;">Sales · L2</div></div><div class="badge-green">Active</div></div>
+            <div class="table-row"><div class="avatar-sm" style="background:#7c3aed;">AM</div><div style="flex:1"><div style="color:#e2e8f0;font-size:11px;font-weight:600;">Anjali Mehta</div><div style="color:#64748b;font-size:9px;">HR · Manager</div></div><div class="badge-yellow">On leave</div></div>
+            <div class="table-row"><div class="avatar-sm" style="background:#0f766e;">SG</div><div style="flex:1"><div style="color:#e2e8f0;font-size:11px;font-weight:600;">Suresh Gupta</div><div style="color:#64748b;font-size:9px;">Finance · L4</div></div><div class="badge-green">Active</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Payroll -->
+      <div id="panel-payroll" class="tour-panel grid md:grid-cols-2 gap-10 items-center">
+        <div>
+          <span class="inline-block px-2 py-0.5 bg-blue-100 text-brand text-xs font-bold rounded mb-3">Payroll</span>
+          <h3 class="text-2xl font-bold text-slate-900 mb-3">India-compliant payroll in minutes</h3>
+          <p class="text-slate-600 text-sm leading-relaxed mb-5">Run your entire payroll cycle from CTC structure to net pay with automatic PF, ESI, TDS, and professional tax calculations. Generate Form 16 and challan reports with one click.</p>
+          <ul class="space-y-2">
+            <li class="flex items-center gap-2 text-sm text-slate-700"><span class="w-1.5 h-1.5 rounded-full bg-brand"></span>Automated PF, ESI, TDS, PT deductions</li>
+            <li class="flex items-center gap-2 text-sm text-slate-700"><span class="w-1.5 h-1.5 rounded-full bg-brand"></span>Flexible salary components and allowances</li>
+            <li class="flex items-center gap-2 text-sm text-slate-700"><span class="w-1.5 h-1.5 rounded-full bg-brand"></span>One-click payslip generation and emailing</li>
+          </ul>
+        </div>
+        <div class="screen-shell mockup-shadow">
+          <div class="screen-bar"><div class="screen-dot" style="background:#ef4444"></div><div class="screen-dot" style="background:#f59e0b"></div><div class="screen-dot" style="background:#22c55e"></div><span class="ml-3 text-slate-500 text-xs">BlueOneHR Payroll</span></div>
+          <div class="screen-content">
+            <div style="background:#1e293b;border-radius:8px;padding:12px;margin-bottom:10px;">
+              <div style="color:#94a3b8;font-size:10px;margin-bottom:6px;">May 2026 Payroll Summary</div>
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <div><div style="color:#fff;font-size:20px;font-weight:800;">₹42,18,500</div><div style="color:#22c55e;font-size:10px;">Gross payout · 148 employees</div></div>
+                <div style="background:#1A56DB;border-radius:6px;padding:6px 12px;color:#fff;font-size:10px;font-weight:700;">Run payroll</div>
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+              <div style="background:#1e293b;border-radius:8px;padding:10px;"><div style="color:#64748b;font-size:9px;">PF Contribution</div><div style="color:#60a5fa;font-size:14px;font-weight:700;">₹5,06,220</div></div>
+              <div style="background:#1e293b;border-radius:8px;padding:10px;"><div style="color:#64748b;font-size:9px;">TDS Deducted</div><div style="color:#f59e0b;font-size:14px;font-weight:700;">₹3,12,400</div></div>
+              <div style="background:#1e293b;border-radius:8px;padding:10px;"><div style="color:#64748b;font-size:9px;">ESI</div><div style="color:#4ade80;font-size:14px;font-weight:700;">₹84,370</div></div>
+              <div style="background:#1e293b;border-radius:8px;padding:10px;"><div style="color:#64748b;font-size:9px;">Net Pay</div><div style="color:#fff;font-size:14px;font-weight:700;">₹33,15,510</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Attendance -->
+      <div id="panel-attendance" class="tour-panel grid md:grid-cols-2 gap-10 items-center">
+        <div>
+          <span class="inline-block px-2 py-0.5 bg-blue-100 text-brand text-xs font-bold rounded mb-3">Attendance</span>
+          <h3 class="text-2xl font-bold text-slate-900 mb-3">Flexible attendance for modern teams</h3>
+          <p class="text-slate-600 text-sm leading-relaxed mb-5">Clock in via web, mobile, or biometric integration. Manage shift schedules, overtime, comp-offs, and leave balances with approval workflows built in.</p>
+          <ul class="space-y-2">
+            <li class="flex items-center gap-2 text-sm text-slate-700"><span class="w-1.5 h-1.5 rounded-full bg-brand"></span>Web, mobile, and biometric clock-in</li>
+            <li class="flex items-center gap-2 text-sm text-slate-700"><span class="w-1.5 h-1.5 rounded-full bg-brand"></span>Shift scheduling and rotating shifts</li>
+            <li class="flex items-center gap-2 text-sm text-slate-700"><span class="w-1.5 h-1.5 rounded-full bg-brand"></span>Leave policies, balances, and approval flows</li>
+          </ul>
+        </div>
+        <div class="screen-shell mockup-shadow">
+          <div class="screen-bar"><div class="screen-dot" style="background:#ef4444"></div><div class="screen-dot" style="background:#f59e0b"></div><div class="screen-dot" style="background:#22c55e"></div><span class="ml-3 text-slate-500 text-xs">BlueOneHR Attendance</span></div>
+          <div class="screen-content">
+            <div style="display:flex;gap:8px;margin-bottom:10px;">
+              <div style="flex:1;background:#1e293b;border-radius:8px;padding:10px;text-align:center;"><div style="color:#4ade80;font-size:16px;font-weight:800;">132</div><div style="color:#64748b;font-size:9px;">Present</div></div>
+              <div style="flex:1;background:#1e293b;border-radius:8px;padding:10px;text-align:center;"><div style="color:#f87171;font-size:16px;font-weight:800;">8</div><div style="color:#64748b;font-size:9px;">Absent</div></div>
+              <div style="flex:1;background:#1e293b;border-radius:8px;padding:10px;text-align:center;"><div style="color:#fbbf24;font-size:16px;font-weight:800;">12</div><div style="color:#64748b;font-size:9px;">On Leave</div></div>
+            </div>
+            <div style="background:#1e293b;border-radius:8px;padding:10px;">
+              <div style="color:#94a3b8;font-size:10px;margin-bottom:8px;">Leave requests</div>
+              <div class="table-row"><div class="avatar-sm">AK</div><div style="flex:1"><div style="color:#e2e8f0;font-size:10px;font-weight:600;">Amit Kulkarni</div><div style="color:#64748b;font-size:9px;">Annual leave · Jun 2–5</div></div><div style="display:flex;gap:4px;"><div style="background:#14532d;color:#4ade80;font-size:9px;padding:2px 6px;border-radius:4px;cursor:pointer;">✓</div><div style="background:#4c0519;color:#f87171;font-size:9px;padding:2px 6px;border-radius:4px;cursor:pointer;">✗</div></div></div>
+              <div class="table-row" style="border:0"><div class="avatar-sm" style="background:#7c3aed;">ND</div><div style="flex:1"><div style="color:#e2e8f0;font-size:10px;font-weight:600;">Neha Desai</div><div style="color:#64748b;font-size:9px;">Sick leave · Jun 3</div></div><div style="display:flex;gap:4px;"><div style="background:#14532d;color:#4ade80;font-size:9px;padding:2px 6px;border-radius:4px;cursor:pointer;">✓</div><div style="background:#4c0519;color:#f87171;font-size:9px;padding:2px 6px;border-radius:4px;cursor:pointer;">✗</div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recruitment -->
+      <div id="panel-recruitment" class="tour-panel grid md:grid-cols-2 gap-10 items-center">
+        <div>
+          <span class="inline-block px-2 py-0.5 bg-blue-100 text-brand text-xs font-bold rounded mb-3">Recruitment</span>
+          <h3 class="text-2xl font-bold text-slate-900 mb-3">Hire faster with a built-in ATS</h3>
+          <p class="text-slate-600 text-sm leading-relaxed mb-5">Post jobs, track candidates through a visual pipeline, schedule interviews, collect feedback, and send offer letters all inside BlueOneHR. No separate ATS subscription needed.</p>
+          <ul class="space-y-2">
+            <li class="flex items-center gap-2 text-sm text-slate-700"><span class="w-1.5 h-1.5 rounded-full bg-brand"></span>Visual Kanban-style hiring pipeline</li>
+            <li class="flex items-center gap-2 text-sm text-slate-700"><span class="w-1.5 h-1.5 rounded-full bg-brand"></span>Interview scheduling and feedback collection</li>
+            <li class="flex items-center gap-2 text-sm text-slate-700"><span class="w-1.5 h-1.5 rounded-full bg-brand"></span>Offer letter generation and e-signature</li>
+          </ul>
+        </div>
+        <div class="screen-shell mockup-shadow">
+          <div class="screen-bar"><div class="screen-dot" style="background:#ef4444"></div><div class="screen-dot" style="background:#f59e0b"></div><div class="screen-dot" style="background:#22c55e"></div><span class="ml-3 text-slate-500 text-xs">BlueOneHR Recruitment</span></div>
+          <div class="screen-content">
+            <div style="color:#94a3b8;font-size:10px;margin-bottom:8px;">Backend Engineer · 6 candidates</div>
+            <div style="display:flex;gap:8px;overflow-x:hidden;">
+              <div style="flex:1;min-width:0;">
+                <div style="color:#94a3b8;font-size:9px;font-weight:700;margin-bottom:6px;">APPLIED (3)</div>
+                <div style="background:#1e293b;border-radius:6px;padding:8px;margin-bottom:4px;"><div style="color:#e2e8f0;font-size:10px;font-weight:600;">Ravi Nair</div><div style="color:#64748b;font-size:9px;">5 yrs exp</div></div>
+                <div style="background:#1e293b;border-radius:6px;padding:8px;"><div style="color:#e2e8f0;font-size:10px;font-weight:600;">Deepa Roy</div><div style="color:#64748b;font-size:9px;">3 yrs exp</div></div>
+              </div>
+              <div style="flex:1;min-width:0;">
+                <div style="color:#94a3b8;font-size:9px;font-weight:700;margin-bottom:6px;">INTERVIEW (2)</div>
+                <div style="background:#1e3a5f;border-radius:6px;padding:8px;margin-bottom:4px;"><div style="color:#93c5fd;font-size:10px;font-weight:600;">Kiran Patel</div><div style="color:#64748b;font-size:9px;">Today 3pm</div></div>
+                <div style="background:#1e293b;border-radius:6px;padding:8px;"><div style="color:#e2e8f0;font-size:10px;font-weight:600;">Sana Ali</div><div style="color:#64748b;font-size:9px;">Mon 11am</div></div>
+              </div>
+              <div style="flex:1;min-width:0;">
+                <div style="color:#94a3b8;font-size:9px;font-weight:700;margin-bottom:6px;">OFFER (1)</div>
+                <div style="background:#14532d;border-radius:6px;padding:8px;"><div style="color:#4ade80;font-size:10px;font-weight:600;">Mohit Jain</div><div style="color:#86efac;font-size:9px;">Offer sent</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /tour panels -->
+  </div>
+</section>
+
+<!-- ── Live demo CTA ──────────────────────────────────────────────────────── -->
+<section class="py-16 bg-slate-50">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid md:grid-cols-2 gap-8">
+
+      <div class="bg-white rounded-2xl border border-slate-200 p-8 fade-in">
+        <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-5">
+          <svg class="w-6 h-6 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+        </div>
+        <h3 class="text-xl font-bold text-slate-900 mb-2">Explore the live sandbox</h3>
+        <p class="text-slate-600 text-sm leading-relaxed mb-5">Log in to our pre-loaded demo environment with sample employees and data. Poke around at your own pace no commitment, nothing to install.</p>
+        <a href="https://demo.blueonehr.com" target="_blank" class="inline-flex items-center gap-2 px-5 py-3 bg-brand text-white text-sm font-semibold rounded-xl hover:bg-brand-dark transition-colors">
+          Open live demo
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+        </a>
+      </div>
+
+      <div id="book-demo" class="bg-white rounded-2xl border border-slate-200 p-8 fade-in">
+        <div class="w-12 h-12 bg-cyan/10 rounded-xl flex items-center justify-center mb-5">
+          <svg class="w-6 h-6 text-cyan" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+        </div>
+        <h3 class="text-xl font-bold text-slate-900 mb-2">Book a guided walkthrough</h3>
+        <p class="text-slate-600 text-sm leading-relaxed mb-5">Get a personalised 30-minute session with our team. We'll walk you through the modules that matter most for your industry and headcount.</p>
+        <a href="/about/#contact" class="inline-flex items-center gap-2 px-5 py-3 border-2 border-cyan text-cyan text-sm font-semibold rounded-xl hover:bg-cyan hover:text-white transition-all">
+          Schedule a demo
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── What you'll see ───────────────────────────────────────────────────── -->
+<section class="py-16 bg-white">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-2xl font-bold text-slate-900 text-center mb-10 fade-in">What you'll see in a guided demo</h2>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="fade-in p-6 bg-slate-50 rounded-2xl">
+        <div class="text-2xl mb-3">🏢</div>
+        <h4 class="font-bold text-slate-900 mb-1">Company setup</h4>
+        <p class="text-sm text-slate-600">Configure departments, pay grades, holiday calendars, and leave policies for your organisation.</p>
+      </div>
+      <div class="fade-in p-6 bg-slate-50 rounded-2xl">
+        <div class="text-2xl mb-3">💰</div>
+        <h4 class="font-bold text-slate-900 mb-1">Payroll run</h4>
+        <p class="text-sm text-slate-600">Run a full payroll cycle end-to-end CTC breakdown, statutory deductions, payslip distribution.</p>
+      </div>
+      <div class="fade-in p-6 bg-slate-50 rounded-2xl">
+        <div class="text-2xl mb-3">📋</div>
+        <h4 class="font-bold text-slate-900 mb-1">Compliance reports</h4>
+        <p class="text-sm text-slate-600">Generate PF challan, ESI returns, Form 16, and TDS reports ready for filing.</p>
+      </div>
+      <div class="fade-in p-6 bg-slate-50 rounded-2xl">
+        <div class="text-2xl mb-3">👤</div>
+        <h4 class="font-bold text-slate-900 mb-1">Self-service portal</h4>
+        <p class="text-sm text-slate-600">See BlueOneHR from an employee's perspective apply for leave, view payslips, update personal details.</p>
+      </div>
+      <div class="fade-in p-6 bg-slate-50 rounded-2xl">
+        <div class="text-2xl mb-3">📊</div>
+        <h4 class="font-bold text-slate-900 mb-1">Analytics &amp; reports</h4>
+        <p class="text-sm text-slate-600">Attrition trends, headcount history, cost-centre analysis, and custom report builder.</p>
+      </div>
+      <div class="fade-in p-6 bg-slate-50 rounded-2xl">
+        <div class="text-2xl mb-3">🔗</div>
+        <h4 class="font-bold text-slate-900 mb-1">Integrations</h4>
+        <p class="text-sm text-slate-600">See how BlueOneHR connects with your existing tools accounting, biometric devices, and email.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ─────────────────────────────────────────────────────────────── -->
+<footer class="bg-slate-900 text-slate-400 pt-14 pb-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
+      <div class="col-span-2 md:col-span-1">
+        <a href="/" class="flex items-center mb-4">
+          <div class="inline-block bg-white rounded-lg px-2 py-1"><img src="/assets/img/logo.svg" alt="BlueOneHR" style="height:26px;width:auto;"></div>
+        </a>
+        <p class="text-sm leading-relaxed mb-4">Modern HR software for fast-growing Indian businesses.</p>
+        <p class="text-xs">Made in India 🇮🇳</p>
+      </div>
+      <div>
+        <p class="text-xs font-bold text-slate-300 uppercase tracking-wider mb-3">Product</p>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/#features" class="hover:text-white transition-colors">Features</a></li>
+          <li><a href="/#modules" class="hover:text-white transition-colors">Modules</a></li>
+          
+          <li><a href="/demo/" class="hover:text-white transition-colors">Demo</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-xs font-bold text-slate-300 uppercase tracking-wider mb-3">Company</p>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/about/" class="hover:text-white transition-colors">About us</a></li>
+          <li><a href="/about/#contact" class="hover:text-white transition-colors">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-xs font-bold text-slate-300 uppercase tracking-wider mb-3">Legal</p>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#" class="hover:text-white transition-colors">Privacy policy</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Terms of service</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Security</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-slate-800 pt-6 text-xs text-center">© 2026 BlueOneHR. All rights reserved.</div>
+  </div>
+</footer>
+
+<script src="/js/main.js"></script>
+<script>
+  // Tab switching for module tour
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const panels  = document.querySelectorAll('.tour-panel');
+
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tab = btn.dataset.tab;
+      tabBtns.forEach(b => {
+        b.classList.remove('active');
+        b.classList.remove('border-brand');
+        b.classList.add('border-slate-200', 'text-slate-600');
+      });
+      btn.classList.add('active');
+      btn.classList.remove('border-slate-200', 'text-slate-600');
+      btn.classList.add('border-brand');
+      panels.forEach(p => p.classList.remove('active'));
+      const panel = document.getElementById('panel-' + tab);
+      if (panel) {
+        panel.classList.add('active');
+        panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
