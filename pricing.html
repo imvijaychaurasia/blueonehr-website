@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pricing BlueOneHR</title>
-  <meta name="description" content="Simple, transparent pricing for BlueOneHR. Choose the plan that fits your team. Free trial available." />
+  <title>Pricing — BlueOneHR</title>
+  <meta name="description" content="BlueOneHR subscription plans — Business Starter, Business Standard, Enterprise. Start with a 15-day free trial, no credit card required." />
+  <meta name="robots" content="noindex, nofollow" />
   <link rel="icon" href="assets/img/icon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" />
@@ -34,7 +35,6 @@
       <nav class="hidden md:flex items-center gap-7">
         <a href="index.html#features" class="nav-link text-sm font-medium text-slate-600 hover:text-brand transition-colors">Features</a>
         <a href="index.html#modules" class="nav-link text-sm font-medium text-slate-600 hover:text-brand transition-colors">Modules</a>
-        <a href="pricing.html" class="nav-link text-sm font-semibold text-brand transition-colors">Pricing</a>
         <a href="demo.html" class="nav-link text-sm font-medium text-slate-600 hover:text-brand transition-colors">Demo</a>
         <a href="about.html" class="nav-link text-sm font-medium text-slate-600 hover:text-brand transition-colors">About</a>
       </nav>
@@ -55,7 +55,6 @@
     <div class="px-4 py-4 space-y-1">
       <a href="index.html#features" class="block px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50">Features</a>
       <a href="index.html#modules" class="block px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50">Modules</a>
-      <a href="pricing.html" class="block px-3 py-2 rounded-lg text-sm font-semibold text-brand bg-blue-50">Pricing</a>
       <a href="demo.html" class="block px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50">Demo</a>
       <a href="about.html" class="block px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50">About</a>
       <div class="pt-3 pb-1 border-t border-slate-100 flex flex-col gap-2">
@@ -74,51 +73,68 @@
       Pricing that grows<br><span class="gradient-text">with your team</span>
     </h1>
     <p class="text-lg text-slate-600 mb-6">
-      Start with a free trial no credit card needed. We'll tailor a plan to your headcount, modules, and rollout timeline.
+      Start with a 15-day free trial — no credit card required. Upgrade to the plan that fits your headcount, modules, and rollout timeline.
     </p>
     <p class="text-sm text-slate-500">Questions? <a href="about.html#contact" class="text-brand font-semibold hover:underline">Talk to our team →</a></p>
   </div>
 </section>
 
-<!-- ── Pricing cards ─────────────────────────────────────────────────────── -->
-<section class="py-16 bg-white">
+<!-- ── Free Trial banner ──────────────────────────────────────────────────── -->
+<section class="pb-6 bg-white">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="rounded-2xl bg-gradient-to-r from-blue-50 to-cyan-50 border border-blue-100 px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 fade-in">
+      <div>
+        <p class="text-xs font-bold text-brand uppercase tracking-wider mb-1">Free Trial</p>
+        <p class="text-2xl font-extrabold text-slate-900">₹0 <span class="text-base font-semibold text-slate-500">— 15 days · up to 25 employees</span></p>
+        <p class="text-sm text-slate-600 mt-1">Full access to <strong>all modules</strong> including payroll, recruitment, performance, and workspace apps. No credit card needed.</p>
+      </div>
+      <a href="about.html#contact" class="shrink-0 px-6 py-3 border-2 border-brand text-brand text-sm font-bold rounded-xl hover:bg-brand hover:text-white transition-all whitespace-nowrap">Start free trial →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Pricing cards ─────────────────────────────────────────────────────── -->
+<section class="py-10 bg-white">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <p class="text-center text-sm font-semibold text-slate-500 mb-8 uppercase tracking-wider">Paid Plans</p>
     <div class="grid md:grid-cols-3 gap-8">
 
-      <!-- Free Trial -->
+      <!-- Business Starter -->
       <div class="pricing-card fade-in rounded-2xl border border-slate-200 p-8 flex flex-col">
         <div class="mb-6">
-          <p class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Free Trial</p>
-          <p class="text-4xl font-extrabold text-slate-900">₹0</p>
-          <p class="text-sm text-slate-500 mt-1">15 days, up to 25 employees</p>
+          <p class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Business Starter</p>
+          <p class="text-4xl font-extrabold text-slate-900">Custom</p>
+          <p class="text-sm text-slate-500 mt-1">Per employee / month · billed annually</p>
         </div>
         <ul class="space-y-3 flex-1 mb-8">
-          <li class="flex items-start gap-2 text-sm text-slate-600"><svg class="w-4 h-4 text-brand mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>All core HR modules</li>
-          <li class="flex items-start gap-2 text-sm text-slate-600"><svg class="w-4 h-4 text-brand mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Employee management &amp; self-service</li>
+          <li class="flex items-start gap-2 text-sm text-slate-600"><svg class="w-4 h-4 text-brand mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Employee profiles &amp; org chart</li>
           <li class="flex items-start gap-2 text-sm text-slate-600"><svg class="w-4 h-4 text-brand mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Attendance &amp; leave management</li>
-          <li class="flex items-start gap-2 text-sm text-slate-600"><svg class="w-4 h-4 text-brand mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Email support</li>
-          <li class="flex items-start gap-2 text-sm text-slate-500"><svg class="w-4 h-4 text-slate-300 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>Payroll &amp; compliance</li>
-          <li class="flex items-start gap-2 text-sm text-slate-500"><svg class="w-4 h-4 text-slate-300 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>Custom branding</li>
+          <li class="flex items-start gap-2 text-sm text-slate-600"><svg class="w-4 h-4 text-brand mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Payroll with PF, ESI, TDS compliance</li>
+          <li class="flex items-start gap-2 text-sm text-slate-600"><svg class="w-4 h-4 text-brand mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Assets, Offboarding &amp; HR Letters</li>
+          <li class="flex items-start gap-2 text-sm text-slate-600"><svg class="w-4 h-4 text-brand mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Help Desk &amp; Reports</li>
+          <li class="flex items-start gap-2 text-sm text-slate-500"><svg class="w-4 h-4 text-slate-300 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>Recruitment &amp; onboarding</li>
+          <li class="flex items-start gap-2 text-sm text-slate-500"><svg class="w-4 h-4 text-slate-300 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>Performance &amp; Projects</li>
         </ul>
-        <a href="about.html#contact" class="block text-center px-5 py-3 border-2 border-brand text-brand text-sm font-semibold rounded-xl hover:bg-brand hover:text-white transition-all">Start free trial</a>
+        <a href="about.html#contact" class="block text-center px-5 py-3 border-2 border-brand text-brand text-sm font-semibold rounded-xl hover:bg-brand hover:text-white transition-all">Contact us for pricing</a>
       </div>
 
-      <!-- Growth (highlighted) -->
+      <!-- Business Standard (highlighted) -->
       <div class="pricing-card fade-in rounded-2xl border-2 border-brand p-8 flex flex-col relative shadow-lg shadow-blue-100">
         <div class="absolute -top-3.5 left-1/2 -translate-x-1/2">
           <span class="px-3 py-1 bg-brand text-white text-xs font-bold rounded-full">Most popular</span>
         </div>
         <div class="mb-6">
-          <p class="text-xs font-bold text-brand uppercase tracking-wider mb-2">Growth</p>
+          <p class="text-xs font-bold text-brand uppercase tracking-wider mb-2">Business Standard</p>
           <p class="text-4xl font-extrabold text-slate-900">Custom</p>
           <p class="text-sm text-slate-500 mt-1">Per employee / month · billed annually</p>
         </div>
         <ul class="space-y-3 flex-1 mb-8">
-          <li class="flex items-start gap-2 text-sm text-slate-600"><svg class="w-4 h-4 text-brand mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Everything in Free Trial</li>
-          <li class="flex items-start gap-2 text-sm text-slate-600"><svg class="w-4 h-4 text-brand mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Full payroll with PF, ESI, TDS</li>
-          <li class="flex items-start gap-2 text-sm text-slate-600"><svg class="w-4 h-4 text-brand mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Recruitment &amp; onboarding</li>
-          <li class="flex items-start gap-2 text-sm text-slate-600"><svg class="w-4 h-4 text-brand mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Performance management</li>
-          <li class="flex items-start gap-2 text-sm text-slate-600"><svg class="w-4 h-4 text-brand mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Priority support + onboarding call</li>
+          <li class="flex items-start gap-2 text-sm text-slate-600"><svg class="w-4 h-4 text-brand mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Everything in Business Starter</li>
+          <li class="flex items-start gap-2 text-sm text-slate-600"><svg class="w-4 h-4 text-brand mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Recruitment pipeline &amp; ATS</li>
+          <li class="flex items-start gap-2 text-sm text-slate-600"><svg class="w-4 h-4 text-brand mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Onboarding workflows</li>
+          <li class="flex items-start gap-2 text-sm text-slate-600"><svg class="w-4 h-4 text-brand mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Performance reviews &amp; OKRs</li>
+          <li class="flex items-start gap-2 text-sm text-slate-600"><svg class="w-4 h-4 text-brand mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Project management</li>
+          <li class="flex items-start gap-2 text-sm text-slate-600"><svg class="w-4 h-4 text-brand mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Priority support &amp; onboarding call</li>
           <li class="flex items-start gap-2 text-sm text-slate-500"><svg class="w-4 h-4 text-slate-300 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>Custom branding / white-label</li>
         </ul>
         <a href="about.html#contact" class="block text-center px-5 py-3 bg-brand text-white text-sm font-semibold rounded-xl hover:bg-brand-dark transition-colors shadow-md shadow-blue-200">Contact us for pricing</a>
@@ -132,12 +148,13 @@
           <p class="text-sm text-slate-400 mt-1">Dedicated instance · SLA guaranteed</p>
         </div>
         <ul class="space-y-3 flex-1 mb-8">
-          <li class="flex items-start gap-2 text-sm text-slate-300"><svg class="w-4 h-4 text-cyan mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Everything in Growth</li>
+          <li class="flex items-start gap-2 text-sm text-slate-300"><svg class="w-4 h-4 text-cyan mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Everything in Business Standard</li>
+          <li class="flex items-start gap-2 text-sm text-slate-300"><svg class="w-4 h-4 text-cyan mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Workspace Apps integration</li>
+          <li class="flex items-start gap-2 text-sm text-slate-300"><svg class="w-4 h-4 text-cyan mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Inventory Sync (Snipe-IT)</li>
+          <li class="flex items-start gap-2 text-sm text-slate-300"><svg class="w-4 h-4 text-cyan mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Employee KYC (Aadhaar, PAN, UAN)</li>
           <li class="flex items-start gap-2 text-sm text-slate-300"><svg class="w-4 h-4 text-cyan mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>White-label &amp; custom domain</li>
-          <li class="flex items-start gap-2 text-sm text-slate-300"><svg class="w-4 h-4 text-cyan mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Dedicated cloud infrastructure</li>
-          <li class="flex items-start gap-2 text-sm text-slate-300"><svg class="w-4 h-4 text-cyan mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>99.9% uptime SLA</li>
-          <li class="flex items-start gap-2 text-sm text-slate-300"><svg class="w-4 h-4 text-cyan mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Dedicated account manager</li>
-          <li class="flex items-start gap-2 text-sm text-slate-300"><svg class="w-4 h-4 text-cyan mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Custom integrations &amp; API access</li>
+          <li class="flex items-start gap-2 text-sm text-slate-300"><svg class="w-4 h-4 text-cyan mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>99.9% SLA · dedicated account manager</li>
+          <li class="flex items-start gap-2 text-sm text-slate-300"><svg class="w-4 h-4 text-cyan mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>REST API access &amp; custom integrations</li>
         </ul>
         <a href="about.html#contact" class="block text-center px-5 py-3 bg-cyan text-slate-900 text-sm font-semibold rounded-xl hover:opacity-90 transition-opacity">Talk to sales</a>
       </div>
@@ -148,37 +165,52 @@
 
 <!-- ── Feature comparison ─────────────────────────────────────────────────── -->
 <section class="py-16 bg-slate-50">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-    <h2 class="text-2xl font-bold text-slate-900 text-center mb-10 fade-in">What's included in each plan</h2>
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-2xl font-bold text-slate-900 text-center mb-2 fade-in">What's included in each plan</h2>
+    <p class="text-center text-sm text-slate-500 mb-10 fade-in">Free Trial has full access to all modules for 15 days.</p>
     <div class="overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-sm fade-in">
       <table class="w-full text-sm">
         <thead>
           <tr class="border-b border-slate-100">
-            <th class="text-left px-6 py-4 font-semibold text-slate-700 w-1/2">Feature</th>
-            <th class="text-center px-4 py-4 font-semibold text-slate-500">Free Trial</th>
-            <th class="text-center px-4 py-4 font-semibold text-brand">Growth</th>
-            <th class="text-center px-4 py-4 font-semibold text-slate-700">Enterprise</th>
+            <th class="text-left px-6 py-4 font-semibold text-slate-700 w-2/5">Feature</th>
+            <th class="text-center px-3 py-4 font-semibold text-slate-500 text-xs">Business<br>Starter</th>
+            <th class="text-center px-3 py-4 font-semibold text-brand text-xs">Business<br>Standard</th>
+            <th class="text-center px-3 py-4 font-semibold text-slate-700 text-xs">Enterprise</th>
           </tr>
         </thead>
         <tbody class="divide-y divide-slate-50">
-          <tr class="bg-slate-50/50"><td colspan="4" class="px-6 py-2 text-xs font-bold text-slate-500 uppercase tracking-wider">Core HR</td></tr>
-          <tr><td class="px-6 py-3 text-slate-700">Employee profiles &amp; org chart</td><td class="text-center px-4 py-3">✅</td><td class="text-center px-4 py-3">✅</td><td class="text-center px-4 py-3">✅</td></tr>
-          <tr><td class="px-6 py-3 text-slate-700">Attendance &amp; leave management</td><td class="text-center px-4 py-3">✅</td><td class="text-center px-4 py-3">✅</td><td class="text-center px-4 py-3">✅</td></tr>
-          <tr><td class="px-6 py-3 text-slate-700">Employee self-service portal</td><td class="text-center px-4 py-3">✅</td><td class="text-center px-4 py-3">✅</td><td class="text-center px-4 py-3">✅</td></tr>
-          <tr><td class="px-6 py-3 text-slate-700">Documents &amp; policy management</td><td class="text-center px-4 py-3">✅</td><td class="text-center px-4 py-3">✅</td><td class="text-center px-4 py-3">✅</td></tr>
-          <tr class="bg-slate-50/50"><td colspan="4" class="px-6 py-2 text-xs font-bold text-slate-500 uppercase tracking-wider">Payroll &amp; Compliance</td></tr>
-          <tr><td class="px-6 py-3 text-slate-700">Automated payroll processing</td><td class="text-center px-4 py-3 text-slate-300">—</td><td class="text-center px-4 py-3">✅</td><td class="text-center px-4 py-3">✅</td></tr>
-          <tr><td class="px-6 py-3 text-slate-700">PF, ESI, TDS, PT compliance</td><td class="text-center px-4 py-3 text-slate-300">—</td><td class="text-center px-4 py-3">✅</td><td class="text-center px-4 py-3">✅</td></tr>
-          <tr><td class="px-6 py-3 text-slate-700">Form 16 &amp; statutory reports</td><td class="text-center px-4 py-3 text-slate-300">—</td><td class="text-center px-4 py-3">✅</td><td class="text-center px-4 py-3">✅</td></tr>
-          <tr class="bg-slate-50/50"><td colspan="4" class="px-6 py-2 text-xs font-bold text-slate-500 uppercase tracking-wider">Talent</td></tr>
-          <tr><td class="px-6 py-3 text-slate-700">Recruitment pipeline &amp; ATS</td><td class="text-center px-4 py-3 text-slate-300">—</td><td class="text-center px-4 py-3">✅</td><td class="text-center px-4 py-3">✅</td></tr>
-          <tr><td class="px-6 py-3 text-slate-700">Performance reviews &amp; OKRs</td><td class="text-center px-4 py-3 text-slate-300">—</td><td class="text-center px-4 py-3">✅</td><td class="text-center px-4 py-3">✅</td></tr>
-          <tr><td class="px-6 py-3 text-slate-700">Training &amp; LMS</td><td class="text-center px-4 py-3 text-slate-300">—</td><td class="text-center px-4 py-3">✅</td><td class="text-center px-4 py-3">✅</td></tr>
-          <tr class="bg-slate-50/50"><td colspan="4" class="px-6 py-2 text-xs font-bold text-slate-500 uppercase tracking-wider">Platform</td></tr>
-          <tr><td class="px-6 py-3 text-slate-700">Custom branding &amp; white-label</td><td class="text-center px-4 py-3 text-slate-300">—</td><td class="text-center px-4 py-3 text-slate-300">—</td><td class="text-center px-4 py-3">✅</td></tr>
-          <tr><td class="px-6 py-3 text-slate-700">Custom domain</td><td class="text-center px-4 py-3 text-slate-300">—</td><td class="text-center px-4 py-3 text-slate-300">—</td><td class="text-center px-4 py-3">✅</td></tr>
-          <tr><td class="px-6 py-3 text-slate-700">REST API access</td><td class="text-center px-4 py-3 text-slate-300">—</td><td class="text-center px-4 py-3 text-slate-300">—</td><td class="text-center px-4 py-3">✅</td></tr>
-          <tr><td class="px-6 py-3 text-slate-700">99.9% SLA</td><td class="text-center px-4 py-3 text-slate-300">—</td><td class="text-center px-4 py-3 text-slate-300">—</td><td class="text-center px-4 py-3">✅</td></tr>
+
+          <tr class="bg-slate-50/70"><td colspan="4" class="px-6 py-2 text-xs font-bold text-slate-500 uppercase tracking-wider">Core HR</td></tr>
+          <tr><td class="px-6 py-3 text-slate-700">Employee profiles &amp; org chart</td><td class="text-center px-3 py-3">✅</td><td class="text-center px-3 py-3">✅</td><td class="text-center px-3 py-3">✅</td></tr>
+          <tr><td class="px-6 py-3 text-slate-700">Attendance &amp; leave management</td><td class="text-center px-3 py-3">✅</td><td class="text-center px-3 py-3">✅</td><td class="text-center px-3 py-3">✅</td></tr>
+          <tr><td class="px-6 py-3 text-slate-700">Employee self-service portal</td><td class="text-center px-3 py-3">✅</td><td class="text-center px-3 py-3">✅</td><td class="text-center px-3 py-3">✅</td></tr>
+          <tr><td class="px-6 py-3 text-slate-700">Assets management</td><td class="text-center px-3 py-3">✅</td><td class="text-center px-3 py-3">✅</td><td class="text-center px-3 py-3">✅</td></tr>
+          <tr><td class="px-6 py-3 text-slate-700">Offboarding &amp; full &amp; final settlement</td><td class="text-center px-3 py-3">✅</td><td class="text-center px-3 py-3">✅</td><td class="text-center px-3 py-3">✅</td></tr>
+          <tr><td class="px-6 py-3 text-slate-700">HR Letters (offer, experience, warning)</td><td class="text-center px-3 py-3">✅</td><td class="text-center px-3 py-3">✅</td><td class="text-center px-3 py-3">✅</td></tr>
+          <tr><td class="px-6 py-3 text-slate-700">Help Desk &amp; ticketing</td><td class="text-center px-3 py-3">✅</td><td class="text-center px-3 py-3">✅</td><td class="text-center px-3 py-3">✅</td></tr>
+          <tr><td class="px-6 py-3 text-slate-700">Reports &amp; analytics</td><td class="text-center px-3 py-3">✅</td><td class="text-center px-3 py-3">✅</td><td class="text-center px-3 py-3">✅</td></tr>
+
+          <tr class="bg-slate-50/70"><td colspan="4" class="px-6 py-2 text-xs font-bold text-slate-500 uppercase tracking-wider">Payroll &amp; Compliance</td></tr>
+          <tr><td class="px-6 py-3 text-slate-700">Automated payroll processing</td><td class="text-center px-3 py-3">✅</td><td class="text-center px-3 py-3">✅</td><td class="text-center px-3 py-3">✅</td></tr>
+          <tr><td class="px-6 py-3 text-slate-700">PF, ESI, TDS, PT compliance</td><td class="text-center px-3 py-3">✅</td><td class="text-center px-3 py-3">✅</td><td class="text-center px-3 py-3">✅</td></tr>
+          <tr><td class="px-6 py-3 text-slate-700">Form 16 &amp; statutory reports</td><td class="text-center px-3 py-3">✅</td><td class="text-center px-3 py-3">✅</td><td class="text-center px-3 py-3">✅</td></tr>
+
+          <tr class="bg-slate-50/70"><td colspan="4" class="px-6 py-2 text-xs font-bold text-slate-500 uppercase tracking-wider">Talent (Standard &amp; above)</td></tr>
+          <tr><td class="px-6 py-3 text-slate-700">Recruitment pipeline &amp; ATS</td><td class="text-center px-3 py-3 text-slate-300">—</td><td class="text-center px-3 py-3">✅</td><td class="text-center px-3 py-3">✅</td></tr>
+          <tr><td class="px-6 py-3 text-slate-700">Onboarding workflows &amp; checklists</td><td class="text-center px-3 py-3 text-slate-300">—</td><td class="text-center px-3 py-3">✅</td><td class="text-center px-3 py-3">✅</td></tr>
+          <tr><td class="px-6 py-3 text-slate-700">Performance reviews &amp; OKRs</td><td class="text-center px-3 py-3 text-slate-300">—</td><td class="text-center px-3 py-3">✅</td><td class="text-center px-3 py-3">✅</td></tr>
+          <tr><td class="px-6 py-3 text-slate-700">Project management</td><td class="text-center px-3 py-3 text-slate-300">—</td><td class="text-center px-3 py-3">✅</td><td class="text-center px-3 py-3">✅</td></tr>
+
+          <tr class="bg-slate-50/70"><td colspan="4" class="px-6 py-2 text-xs font-bold text-slate-500 uppercase tracking-wider">Enterprise Platform</td></tr>
+          <tr><td class="px-6 py-3 text-slate-700">Workspace Apps (Slack, GitHub, Jira…)</td><td class="text-center px-3 py-3 text-slate-300">—</td><td class="text-center px-3 py-3 text-slate-300">—</td><td class="text-center px-3 py-3">✅</td></tr>
+          <tr><td class="px-6 py-3 text-slate-700">Inventory Sync (Snipe-IT)</td><td class="text-center px-3 py-3 text-slate-300">—</td><td class="text-center px-3 py-3 text-slate-300">—</td><td class="text-center px-3 py-3">✅</td></tr>
+          <tr><td class="px-6 py-3 text-slate-700">Employee KYC (Aadhaar, PAN, UAN)</td><td class="text-center px-3 py-3 text-slate-300">—</td><td class="text-center px-3 py-3 text-slate-300">—</td><td class="text-center px-3 py-3">✅</td></tr>
+          <tr><td class="px-6 py-3 text-slate-700">White-label &amp; custom branding</td><td class="text-center px-3 py-3 text-slate-300">—</td><td class="text-center px-3 py-3 text-slate-300">—</td><td class="text-center px-3 py-3">✅</td></tr>
+          <tr><td class="px-6 py-3 text-slate-700">Custom domain</td><td class="text-center px-3 py-3 text-slate-300">—</td><td class="text-center px-3 py-3 text-slate-300">—</td><td class="text-center px-3 py-3">✅</td></tr>
+          <tr><td class="px-6 py-3 text-slate-700">REST API access</td><td class="text-center px-3 py-3 text-slate-300">—</td><td class="text-center px-3 py-3 text-slate-300">—</td><td class="text-center px-3 py-3">✅</td></tr>
+          <tr><td class="px-6 py-3 text-slate-700">99.9% uptime SLA</td><td class="text-center px-3 py-3 text-slate-300">—</td><td class="text-center px-3 py-3 text-slate-300">—</td><td class="text-center px-3 py-3">✅</td></tr>
+          <tr><td class="px-6 py-3 text-slate-700">Dedicated account manager</td><td class="text-center px-3 py-3 text-slate-300">—</td><td class="text-center px-3 py-3 text-slate-300">—</td><td class="text-center px-3 py-3">✅</td></tr>
+
         </tbody>
       </table>
     </div>
@@ -197,7 +229,18 @@
           <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
         </summary>
         <div class="px-6 py-4 text-sm text-slate-600 border-t border-slate-100">
-          Your free trial gives you full access to core HR modules for 15 days with up to 25 employees no credit card required. At the end of the trial, you can continue with a paid plan or export your data.
+          The free trial gives you full access to <strong>all modules</strong> — including payroll, recruitment, performance management, workspace apps, and employee KYC — for 15 days with up to 25 employees. No credit card required. At the end of the trial you can upgrade to a paid plan or export your data.
+        </div>
+      </details>
+
+      <details class="group border border-slate-200 rounded-xl overflow-hidden">
+        <summary class="flex items-center justify-between px-6 py-4 cursor-pointer font-semibold text-slate-800 hover:bg-slate-50 list-none">
+          What is the difference between Business Starter and Business Standard?
+          <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </summary>
+        <div class="px-6 py-4 text-sm text-slate-600 border-t border-slate-100">
+          <strong>Business Starter</strong> covers all core HR operations: employee management, attendance &amp; leave, payroll with statutory compliance, assets, offboarding, HR letters, help desk, and reports.<br><br>
+          <strong>Business Standard</strong> adds the full talent suite: recruitment pipeline &amp; ATS, structured onboarding workflows, performance reviews &amp; OKRs, and project management — making it ideal for growing teams that are actively hiring.
         </div>
       </details>
 
@@ -207,7 +250,7 @@
           <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
         </summary>
         <div class="px-6 py-4 text-sm text-slate-600 border-t border-slate-100">
-          Yes. Our onboarding team helps you import employee data, historical attendance, and payroll records from CSV exports or common HRMS formats. Migration support is included in Growth and Enterprise plans.
+          Yes. Our onboarding team helps you import employee data, historical attendance, and payroll records from CSV exports or common HRMS formats. Migration support is included in Business Standard and Enterprise plans.
         </div>
       </details>
 
@@ -223,11 +266,11 @@
 
       <details class="group border border-slate-200 rounded-xl overflow-hidden">
         <summary class="flex items-center justify-between px-6 py-4 cursor-pointer font-semibold text-slate-800 hover:bg-slate-50 list-none">
-          What support do we get?
+          What support is included?
           <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
         </summary>
         <div class="px-6 py-4 text-sm text-slate-600 border-t border-slate-100">
-          Free Trial includes email support. Growth plans get priority email and a dedicated onboarding call. Enterprise customers get a named account manager, phone support, and an SLA with guaranteed response times.
+          Business Starter includes email support. Business Standard adds priority support and a dedicated onboarding call. Enterprise customers get a named account manager, phone support, and an SLA with guaranteed response times.
         </div>
       </details>
 
@@ -251,7 +294,7 @@
     <h2 class="text-3xl font-extrabold text-white mb-4">Ready to modernise your HR?</h2>
     <p class="text-blue-100 mb-8">Start your free trial in minutes, or speak to our team for a personalised walkthrough.</p>
     <div class="flex flex-col sm:flex-row gap-3 justify-center">
-      <a href="https://demo.blueonehr.com" target="_blank" class="px-6 py-3 bg-white text-brand text-sm font-bold rounded-xl hover:bg-blue-50 transition-colors shadow-md">Start free trial</a>
+      <a href="about.html#contact" class="px-6 py-3 bg-white text-brand text-sm font-bold rounded-xl hover:bg-blue-50 transition-colors shadow-md">Start free trial</a>
       <a href="about.html#contact" class="px-6 py-3 border-2 border-white/40 text-white text-sm font-bold rounded-xl hover:border-white/80 transition-colors">Talk to sales →</a>
     </div>
   </div>
@@ -273,7 +316,6 @@
         <ul class="space-y-2 text-sm">
           <li><a href="index.html#features" class="hover:text-white transition-colors">Features</a></li>
           <li><a href="index.html#modules" class="hover:text-white transition-colors">Modules</a></li>
-          <li><a href="pricing.html" class="hover:text-white transition-colors">Pricing</a></li>
           <li><a href="demo.html" class="hover:text-white transition-colors">Demo</a></li>
         </ul>
       </div>
