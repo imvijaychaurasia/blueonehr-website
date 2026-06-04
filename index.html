@@ -223,6 +223,9 @@
         { src: 'assets/img/screenshots/14_workspace_apps.png',              label: '🧩 Workspace Apps'          },
         { src: 'assets/img/screenshots/15_inventory_sync.png',              label: '📦 Inventory Sync'          },
         { src: 'assets/img/screenshots/16_reports.png',                     label: '📊 Reports'                 },
+        { src: 'assets/img/screenshots/17_HR_Letters.png',                  label: '📄 HR Letters'              },
+        { src: 'assets/img/screenshots/20_HR_Letters_Analytics.png',        label: '📊 HR Letters Analytics'    },
+        { src: 'assets/img/screenshots/23_Employee_KYC.png',                label: '🪪 Employee KYC'            },
       ];
 
       const INTERVAL = 4500; // ms per slide
@@ -297,7 +300,15 @@
           d.style.width = i === current ? '22px' : '8px';
         });
         thumbs.forEach((t, i) => t.classList.toggle('active', i === current));
-        thumbs[current].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        // Scroll only the thumbs strip horizontally — never the whole page
+        const strip = thumbsEl;
+        const thumb = thumbs[current];
+        const stripLeft = strip.scrollLeft;
+        const stripWidth = strip.offsetWidth;
+        const thumbLeft = thumb.offsetLeft;
+        const thumbWidth = thumb.offsetWidth;
+        const targetScroll = thumbLeft - (stripWidth / 2) + (thumbWidth / 2);
+        strip.scrollTo({ left: targetScroll, behavior: 'smooth' });
 
         counter.textContent = (current + 1) + ' / ' + N;
         setLabel(SLIDES[current].label);
@@ -426,80 +437,149 @@
     </div>
 
     <!-- Module detail panel -->
-    <div id="module-detail" class="hidden max-w-2xl mx-auto mt-8 bg-white rounded-2xl border-2 border-brand shadow-lg p-7 fade-in">
-      <div class="flex items-center gap-3 mb-3">
-        <span id="mod-emoji" class="text-3xl"></span>
-        <h3 id="mod-title" class="text-xl font-bold text-slate-900"></h3>
+    <div id="module-detail" class="hidden max-w-4xl mx-auto mt-8 bg-white rounded-2xl border-2 border-brand shadow-lg overflow-hidden fade-in">
+      <div class="grid md:grid-cols-2 gap-0">
+        <!-- Left: text -->
+        <div class="p-7 flex flex-col justify-center">
+          <div class="flex items-center gap-3 mb-3">
+            <span id="mod-emoji" class="text-3xl"></span>
+            <h3 id="mod-title" class="text-xl font-bold text-slate-900"></h3>
+          </div>
+          <p id="mod-desc" class="text-slate-600 leading-relaxed mb-4 text-sm"></p>
+          <ul id="mod-bullets" class="space-y-2 text-sm text-slate-700"></ul>
+        </div>
+        <!-- Right: screenshots -->
+        <div id="mod-ss-wrap" class="hidden bg-slate-50 border-l border-slate-100 flex flex-col">
+          <div class="relative overflow-hidden" style="aspect-ratio:16/9;">
+            <div id="mod-ss-track" style="display:flex;height:100%;transition:transform 0.4s ease;"></div>
+          </div>
+          <div class="flex items-center justify-between px-3 py-2 border-t border-slate-100">
+            <button onclick="modSsGo(-1)" class="text-slate-400 hover:text-brand transition-colors text-lg leading-none px-1">‹</button>
+            <div id="mod-ss-label" class="text-xs text-slate-500 font-medium truncate mx-2 flex-1 text-center"></div>
+            <div id="mod-ss-counter" class="text-xs text-slate-400 whitespace-nowrap mr-2"></div>
+            <button onclick="modSsGo(1)" class="text-slate-400 hover:text-brand transition-colors text-lg leading-none px-1">›</button>
+          </div>
+          <!-- dot strip -->
+          <div id="mod-ss-dots" class="flex justify-center gap-1.5 pb-2"></div>
+        </div>
       </div>
-      <p id="mod-desc" class="text-slate-600 leading-relaxed mb-4 text-sm"></p>
-      <ul id="mod-bullets" class="space-y-2 text-sm text-slate-700"></ul>
     </div>
   </div>
 </section>
 
 <script>
 (function(){
+  const SS = 'assets/img/screenshots/';
   const moduleData = {
-    'Dashboard':      { emoji:'📊', desc:'Real-time HR command centre. Monitor headcount, pending approvals, today\'s attendance, and key metrics at a glance. Auto-refreshing widgets mean you\'re always working with live data.', bullets:['Live headcount and department breakdown','Pending approvals and action items','Payroll and compliance reminders'] },
-    'Recruitment':    { emoji:'🎯', desc:'End-to-end ATS post jobs, track candidates through a visual pipeline, schedule interviews, collect feedback, and send offer letters all inside BlueOneHR.', bullets:['Visual Kanban-style hiring pipeline','Interview scheduling and feedback collection','Offer letter generation and e-signature'] },
-    'Onboarding':     { emoji:'🚀', desc:'Automated new hire checklists, document collection, and IT/access provisioning so new joiners hit the ground running from day one.', bullets:['Digital document collection and KYC','Welcome email and onboarding kit','Task checklists for HR, IT and manager'] },
-    'Employees':      { emoji:'👥', desc:'Complete profiles with documents, KYC, org chart, role history, and a self-service portal so every employee can manage their own information.', bullets:['Rich profiles with documents and KYC','Dynamic org chart with reporting lines','Employee self-service portal'] },
-    'Attendance':     { emoji:'⏰', desc:'Biometric integration, geo-fencing, shift scheduling, and overtime management all with automated approval workflows built in.', bullets:['Web, mobile, and biometric clock-in','Shift scheduling and rotating shifts','Automated overtime and comp-off calculations'] },
-    'Leave':          { emoji:'🌴', desc:'Flexible leave policies, team calendars, balance tracking, and multi-level approval flows fully configurable per entity, department, or grade.', bullets:['Custom leave types and accrual rules','Team calendar view for coverage planning','Multi-level approval workflows'] },
-    'Payroll':        { emoji:'💰', desc:'One-click India-compliant payroll with automated PF, ESI, TDS, and professional tax deductions. Generate Form 16 and challan reports with a single click.', bullets:['Automated PF, ESI, TDS, PT deductions','Flexible salary components and allowances','One-click payslip generation and emailing'] },
-    'Assets':         { emoji:'📦', desc:'Track company assets from laptops to vehicles. Assign to employees, record serial numbers, manage returns, and track depreciation.', bullets:['Asset registry with serial and warranty tracking','Employee assignment and return workflows','Depreciation schedules and audit reports'] },
-    'Performance':    { emoji:'⭐', desc:'OKR tracking, 360° feedback, and performance review cycles that connect directly to payroll increments and appraisal letters.', bullets:['OKR and goal setting by team and individual','360° feedback collection','Appraisal workflows linked to salary revisions'] },
-    'Offboarding':    { emoji:'🔚', desc:'Structured exit workflows, full & final settlement automation, clearance checklists, and experience letter generation so exits are as smooth as joinings.', bullets:['Exit interview and clearance checklists','Automated FnF settlement calculation','Experience certificate and relieving letter generation'] },
-    'HR Letters':     { emoji:'📄', desc:'Generate offer letters, experience certificates, warning letters, and any custom HR letter in seconds using built-in templates.', bullets:['Pre-built templates for 20+ letter types','Custom letter builder with merge fields','Digital delivery and acknowledgement tracking'] },
-    'Projects':       { emoji:'📋', desc:'Assign employees to projects, track time and costs per project, and generate client-ready billing and utilisation reports.', bullets:['Project and task assignment to employees','Time logging and cost tracking','Billing and utilisation reports'] },
-    'Help Desk':      { emoji:'🆘', desc:'Employee helpdesk with ticketing, SLA tracking, category routing, and automated resolution workflows for HR queries.', bullets:['Ticket creation via web or email','SLA-based routing and escalation','Analytics on common query types'] },
-    'Workspace Apps': { emoji:'🖥️', desc:'Company-wide announcements, polls, engagement surveys, and internal communication tools bringing your workforce together in one place.', bullets:['Announcements and notice board','Polls, surveys, and pulse checks','Birthday and anniversary celebrations'] },
-    'Inventory Sync': { emoji:'🔗', desc:'Connect HR data with inventory and asset management systems for automated procurement, assignment, and reconciliation.', bullets:['Sync with inventory management tools','Automated asset allocation on joining','Return and reconciliation on exit'] },
-    'KYC':            { emoji:'🪪', desc:'Verified Aadhaar, PAN, PF UAN storage with document expiry reminders and bulk download for audits keeping you audit-ready at all times.', bullets:['Aadhaar, PAN, UAN verified storage','Document expiry alerts and renewal tracking','Bulk export for compliance audits'] },
-    'Reports':        { emoji:'📈', desc:'Custom report builder, analytics dashboards, and export-ready data covering headcount, attrition, payroll, and compliance for every level of leadership.', bullets:['Drag-and-drop custom report builder','Headcount, attrition, and cost analytics','Excel and PDF export for any report'] }
+    'Dashboard':      { emoji:'📊', desc:'Real-time HR command centre. Monitor headcount, pending approvals, today\'s attendance, and key metrics at a glance. Auto-refreshing widgets mean you\'re always working with live data.', bullets:['Live headcount and department breakdown','Pending approvals and action items','Payroll and compliance reminders'], shots:[{src:SS+'1_dashboard.png',label:'Dashboard'}] },
+    'Recruitment':    { emoji:'🎯', desc:'End-to-end ATS post jobs, track candidates through a visual pipeline, schedule interviews, collect feedback, and send offer letters all inside BlueOneHR.', bullets:['Visual Kanban-style hiring pipeline','Interview scheduling and feedback collection','Offer letter generation and e-signature'], shots:[{src:SS+'2_recruitment-dashboard.png',label:'Recruitment Pipeline'}] },
+    'Onboarding':     { emoji:'🚀', desc:'Automated new hire checklists, document collection, and IT/access provisioning so new joiners hit the ground running from day one.', bullets:['Digital document collection and KYC','Welcome email and onboarding kit','Task checklists for HR, IT and manager'], shots:[] },
+    'Employees':      { emoji:'👥', desc:'Complete profiles with documents, KYC, org chart, role history, and a self-service portal so every employee can manage their own information.', bullets:['Rich profiles with documents and KYC','Dynamic org chart with reporting lines','Employee self-service portal'], shots:[{src:SS+'3_employees.png',label:'Employee Directory'},{src:SS+'4_employee.png',label:'Employee Profile'}] },
+    'Attendance':     { emoji:'⏰', desc:'Biometric integration, geo-fencing, shift scheduling, and overtime management all with automated approval workflows built in.', bullets:['Web, mobile, and biometric clock-in','Shift scheduling and rotating shifts','Automated overtime and comp-off calculations'], shots:[{src:SS+'5_attendance_dashboard.png',label:'Attendance Dashboard'}] },
+    'Leave':          { emoji:'🌴', desc:'Flexible leave policies, team calendars, balance tracking, and multi-level approval flows fully configurable per entity, department, or grade.', bullets:['Custom leave types and accrual rules','Team calendar view for coverage planning','Multi-level approval workflows'], shots:[{src:SS+'6_leave_dashboard.png',label:'Leave Dashboard'}] },
+    'Payroll':        { emoji:'💰', desc:'One-click India-compliant payroll with automated PF, ESI, TDS, and professional tax deductions. Generate Form 16 and challan reports with a single click.', bullets:['Automated PF, ESI, TDS, PT deductions','Flexible salary components and allowances','One-click payslip generation and emailing'], shots:[{src:SS+'7_payroll_dashboard.png',label:'Payroll Dashboard'},{src:SS+'12_payroll_compliance_dashboard.png',label:'Compliance Dashboard'},{src:SS+'13_payroll_compliance_settings.png',label:'Compliance Settings'}] },
+    'Assets':         { emoji:'📦', desc:'Track company assets from laptops to vehicles. Assign to employees, record serial numbers, manage returns, and track depreciation.', bullets:['Asset registry with serial and warranty tracking','Employee assignment and return workflows','Depreciation schedules and audit reports'], shots:[{src:SS+'8_assets_dashboard.png',label:'Asset Management'}] },
+    'Performance':    { emoji:'⭐', desc:'OKR tracking, 360° feedback, and performance review cycles that connect directly to payroll increments and appraisal letters.', bullets:['OKR and goal setting by team and individual','360° feedback collection','Appraisal workflows linked to salary revisions'], shots:[{src:SS+'9_performance_dashboard.png',label:'Performance Dashboard'}] },
+    'Offboarding':    { emoji:'🔚', desc:'Structured exit workflows, full & final settlement automation, clearance checklists, and experience letter generation so exits are as smooth as joinings.', bullets:['Exit interview and clearance checklists','Automated FnF settlement calculation','Experience certificate and relieving letter generation'], shots:[{src:SS+'10_offboarding_dashboard.png',label:'Offboarding Dashboard'}] },
+    'HR Letters':     { emoji:'📄', desc:'Generate offer letters, experience certificates, warning letters, and any custom HR letter in seconds using built-in templates.', bullets:['Pre-built templates for 20+ letter types','Custom letter builder with merge fields','Digital delivery and acknowledgement tracking'], shots:[{src:SS+'17_HR_Letters.png',label:'HR Letters'},{src:SS+'18_HR_Letters_Issue_Letters.png',label:'Issue Letters'},{src:SS+'19_HR_Letters_Bulk_Issue.png',label:'Bulk Issue'},{src:SS+'20_HR_Letters_Analytics.png',label:'Analytics'},{src:SS+'21_HR_Letters_Manage_Templates.png',label:'Manage Templates'},{src:SS+'22_HR_Letters_LetterHead.png',label:'Letterhead'}] },
+    'Projects':       { emoji:'📋', desc:'Assign employees to projects, track time and costs per project, and generate client-ready billing and utilisation reports.', bullets:['Project and task assignment to employees','Time logging and cost tracking','Billing and utilisation reports'], shots:[{src:SS+'11_project_dashboard.png',label:'Project Dashboard'}] },
+    'Help Desk':      { emoji:'🆘', desc:'Employee helpdesk with ticketing, SLA tracking, category routing, and automated resolution workflows for HR queries.', bullets:['Ticket creation via web or email','SLA-based routing and escalation','Analytics on common query types'], shots:[] },
+    'Workspace Apps': { emoji:'🖥️', desc:'Company-wide announcements, polls, engagement surveys, and internal communication tools bringing your workforce together in one place.', bullets:['Announcements and notice board','Polls, surveys, and pulse checks','Birthday and anniversary celebrations'], shots:[{src:SS+'14_workspace_apps.png',label:'Workspace Apps'}] },
+    'Inventory Sync': { emoji:'🔗', desc:'Connect HR data with inventory and asset management systems for automated procurement, assignment, and reconciliation.', bullets:['Sync with inventory management tools','Automated asset allocation on joining','Return and reconciliation on exit'], shots:[{src:SS+'15_inventory_sync.png',label:'Inventory Sync'}] },
+    'KYC':            { emoji:'🪪', desc:'Verified Aadhaar, PAN, PF UAN storage with document expiry reminders and bulk download for audits keeping you audit-ready at all times.', bullets:['Aadhaar, PAN, UAN verified storage','Document expiry alerts and renewal tracking','Bulk export for compliance audits'], shots:[{src:SS+'23_Employee_KYC.png',label:'Employee KYC'}] },
+    'Reports':        { emoji:'📈', desc:'Custom report builder, analytics dashboards, and export-ready data covering headcount, attrition, payroll, and compliance for every level of leadership.', bullets:['Drag-and-drop custom report builder','Headcount, attrition, and cost analytics','Excel and PDF export for any report'], shots:[{src:SS+'16_reports.png',label:'Reports'}] }
   };
 
+  // ── Per-module mini slideshow state ──────────────────────────────────────
+  const MOD_INTERVAL = 3500;
+  let modCurrent = 0, modTimer = null, modSlides = [];
+
+  const trackEl  = document.getElementById('mod-ss-track');
+  const labelEl  = document.getElementById('mod-ss-label');
+  const counterEl= document.getElementById('mod-ss-counter');
+  const dotsEl   = document.getElementById('mod-ss-dots');
+  const ssWrap   = document.getElementById('mod-ss-wrap');
+
+  function buildModSlideshow(shots) {
+    clearInterval(modTimer);
+    trackEl.innerHTML = '';
+    dotsEl.innerHTML  = '';
+    modSlides = shots;
+
+    if (!shots || shots.length === 0) {
+      ssWrap.classList.add('hidden');
+      return;
+    }
+
+    shots.forEach((s, i) => {
+      const img = document.createElement('img');
+      img.src = s.src; img.alt = s.label;
+      img.loading = i === 0 ? 'eager' : 'lazy';
+      img.style.cssText = 'flex-shrink:0;width:100%;height:100%;object-fit:cover;object-position:top left;';
+      trackEl.appendChild(img);
+
+      const dot = document.createElement('button');
+      dot.style.cssText = 'width:6px;height:6px;border-radius:99px;border:none;cursor:pointer;padding:0;background:#cbd5e1;transition:all .25s;';
+      dot.onclick = () => modGoTo(i);
+      dotsEl.appendChild(dot);
+    });
+
+    ssWrap.classList.remove('hidden');
+    modGoTo(0);
+  }
+
+  function modGoTo(n) {
+    const N = modSlides.length;
+    modCurrent = ((n % N) + N) % N;
+    trackEl.style.transform = 'translateX(-' + (modCurrent * 100) + '%)';
+    labelEl.textContent  = modSlides[modCurrent].label;
+    counterEl.textContent = N > 1 ? (modCurrent + 1) + ' / ' + N : '';
+    dotsEl.querySelectorAll('button').forEach((d, i) => {
+      d.style.background = i === modCurrent ? '#1A56DB' : '#cbd5e1';
+      d.style.width      = i === modCurrent ? '16px' : '6px';
+    });
+    clearInterval(modTimer);
+    if (N > 1) modTimer = setInterval(() => modGoTo(modCurrent + 1), MOD_INTERVAL);
+  }
+
+  window.modSsGo = function(dir) { modGoTo(modCurrent + dir); };
+
+  // ── Pills ─────────────────────────────────────────────────────────────────
   const pills = document.querySelectorAll('.module-pill');
   const panel = document.getElementById('module-detail');
 
+  function activateModule(mod, scroll) {
+    const info = moduleData[mod];
+    if (!info || !panel) return;
+    document.getElementById('mod-emoji').textContent = info.emoji;
+    document.getElementById('mod-title').textContent = mod;
+    document.getElementById('mod-desc').textContent  = info.desc;
+    document.getElementById('mod-bullets').innerHTML = info.bullets.map(b =>
+      `<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand flex-shrink-0"></span>${b}</li>`
+    ).join('');
+    buildModSlideshow(info.shots);
+    panel.classList.remove('hidden');
+    if (scroll) panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
   pills.forEach(pill => {
     pill.addEventListener('click', () => {
-      const mod = pill.dataset.module;
       pills.forEach(p => {
         p.classList.remove('bg-brand','text-white','border-brand');
         p.classList.add('bg-white','text-slate-700','border-slate-200');
       });
       pill.classList.add('bg-brand','text-white','border-brand');
       pill.classList.remove('bg-white','text-slate-700','border-slate-200');
-      const info = moduleData[mod];
-      if (info && panel) {
-        document.getElementById('mod-emoji').textContent = info.emoji;
-        document.getElementById('mod-title').textContent = info.title || mod;
-        document.getElementById('mod-desc').textContent = info.desc;
-        document.getElementById('mod-bullets').innerHTML = info.bullets.map(b =>
-          `<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand flex-shrink-0"></span>${b}</li>`
-        ).join('');
-        panel.classList.remove('hidden');
-        panel.scrollIntoView({ behavior:'smooth', block:'nearest' });
-      }
+      activateModule(pill.dataset.module, true);
     });
   });
 
-  // Default: highlight Payroll pill without scrolling
+  // Default: show Payroll on load without scrolling
   const defaultPill = document.querySelector('[data-module="Payroll"]');
-  if (defaultPill && panel) {
-    const mod = defaultPill.dataset.module;
+  if (defaultPill) {
     defaultPill.classList.add('bg-brand','text-white','border-brand');
     defaultPill.classList.remove('bg-white','text-slate-700','border-slate-200');
-    const info = moduleData[mod];
-    document.getElementById('mod-emoji').textContent = info.emoji;
-    document.getElementById('mod-title').textContent = mod;
-    document.getElementById('mod-desc').textContent = info.desc;
-    document.getElementById('mod-bullets').innerHTML = info.bullets.map(b =>
-      `<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand flex-shrink-0"></span>${b}</li>`
-    ).join('');
-    panel.classList.remove('hidden');
-    // No scrollIntoView — user scrolls manually
+    activateModule('Payroll', false);
   }
 })();
 </script>
