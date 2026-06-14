@@ -1,0 +1,94 @@
+/* BlueOneHR — Custom styles (complements Tailwind CDN) */
+
+:root {
+  --blue:     #1A56DB;
+  --blue-dark:#1344B8;
+  --cyan:     #06B6D4;
+  --dark:     #0F172A;
+  --mid:      #475569;
+  --light:    #F1F5F9;
+}
+
+html { scroll-behavior: smooth; }
+
+.nav-link {
+  position: relative;
+  padding-bottom: 2px;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 2px;
+  background: var(--blue);
+  transition: width 0.25s ease;
+}
+.nav-link:hover::after { width: 100%; }
+
+.hero-bg {
+  background: linear-gradient(135deg, #EEF4FF 0%, #F0FDFF 50%, #F8FAFF 100%);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--blue) 0%, var(--cyan) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.feature-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(26, 86, 219, 0.12);
+}
+
+.pricing-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.pricing-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 48px rgba(0,0,0,0.10);
+}
+
+.btn-primary {
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+.btn-primary:hover { transform: translateY(-1px); }
+.btn-primary:active { transform: translateY(0); }
+
+.mockup-shadow {
+  box-shadow:
+    0 4px 6px rgba(0,0,0,0.04),
+    0 24px 48px rgba(26, 86, 219, 0.15),
+    0 60px 100px rgba(26, 86, 219, 0.08);
+}
+
+.nav-glass {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(255,255,255,0.92);
+}
+
+#mobile-menu {
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+}
+#mobile-menu.open {
+  max-height: 400px;
+  opacity: 1;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #f1f5f9; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--blue); }
+
+.footer-link {
+  color: #94a3b8;
+  transition: color 0.15s;
+}
+.footer-link:hover { color: white; }
